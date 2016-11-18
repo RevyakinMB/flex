@@ -1,0 +1,24 @@
+@base-color: #AD71FF;
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+}
+
+.layout {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	header {
+		flex: 0 0 60px;
+		background-color: @base-color;
+	}
+
+	main {
+		flex: 1 1 auto;
+		margin-top: 10px;
+		background-color: lighten(@base-color, 20);
+	}
+}

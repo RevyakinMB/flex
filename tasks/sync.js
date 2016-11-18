@@ -6,6 +6,7 @@ module.exports = function(options) {
 		browserSync.init({
 			server: './'
 		});
-		gulp.watch('index.html').on('change', browserSync.reload);
+		gulp.watch('*.html').on('change', browserSync.reload);
+		gulp.watch('dist/js/*.js').on('change', browserSync.reload);
 	};
 };

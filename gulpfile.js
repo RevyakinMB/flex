@@ -16,6 +16,19 @@ gulpTask('lint:less', './tasks/lint-less.js', {
 	src: 'src/less/*.less'
 });
 
+gulpTask('lint:js', './tasks/lint-js.js', {
+    src: 'src/js/*.js',
+	cacheFilePath: process.cwd() + '/tmp/lintCache.json',
+	eslintrcPath: process.cwd() + '/.eslintrc.js'
+});
+
+gulp.task('lint', gulp.parallel('lint:js', 'lint:less'));
+
+gulpTask('js', './tasks/js.js', {
+	src: 'src/js/*.js',
+	dest: 'dist/js'
+});
+
 gulpTask('styles', './tasks/styles.js', {
 	src: 'src/less/*.less',
 	dest: {
@@ -30,13 +43,14 @@ gulpTask('clean', './tasks/clean.js', {
 
 gulp.task('watch', function() {
 	gulp.watch('src/less/*.less', gulp.series('styles'));
+	gulp.watch('src/js/*.js', gulp.series('js'));
 });
 
-gulpTask('sync', './tasks/sync.js', {
-	proxy: '127.0.0.1:8080/holy-grail'
-});
+gulpTask('sync', './tasks/sync.js', {});
 
-gulp.task('build', gulp.series('clean', 'styles'));
+gulp.task('build', gulp.series('clean',
+	gulp.parallel('styles', 'js'))
+);
 
 gulp.task('default', gulp.series(
 	'build',

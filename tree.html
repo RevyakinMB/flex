@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tree</title>
+	<link rel="stylesheet" href="dist/css/tree.css">
+</head>
+<body>
+	<div class="layout">
+		<header>
+			<div class="menu-btn"></div>
+			<div class="hint">
+				<i class="fa fa-idea"></i>
+				<span>Long or double click to open</span>
+				<i class="fa fa-close"></i>
+			</div>
+			<div class="logged-user">
+				<span>{USER_LOGIN}</span>
+				<i class="fa fa-logout"></i>
+			</div>
+		</header>
+		<main>
+			<div class="tree">
+				<-- long click progress; :hover style;
+					cursor style; a extends for on tree width
+		AD7BFF
+		2B1F40
+		573E7F
+				-->
+				<div class="item">
+					<!-- margin-left + ::before (i fa fa-icon display:block or none) -->
+					<a href="#" data-page="root">Root</a>
+					<div class="item">
+						<a href="#" data-page="sub1">Sub1</a>
+						<div class="item">
+							<a href="#" data-page="leaf1">Leaf1</a>
+						</div>
+						<div class="item">
+							<a href="#" data-page="leaf2">Leaf2</a>
+						</div>
+						<div class="item">
+							<a href="#" data-page="leaf3">Leaf3</a>
+						</div>
+						<div class="item">
+							<a href="#" data-page="leaf4">Leaf4</a>
+						</div>
+					</div>
+					<div class="item">
+						<a href="#" data-page="sub2">Sub2</a>
+					</div>
+					<div class="item">
+						<a href="#" data-page="sub3">Sub3</a>
+						<div class="item">
+							<a href="#" data-page="subsub1">Subsub1</a>
+							<div class="item">
+								<a href="#" data-page="leaf5">Leaf5</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content"></div>
+		</main>
+	</div>
+</body>
+</html>

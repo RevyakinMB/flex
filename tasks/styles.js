@@ -10,9 +10,14 @@ module.exports = function(options) {
 	return function() {
 	    return gulp.src(options.src)
 			.pipe(gulp.dest(options.dest.less))
-			.pipe(_if(!production, $.plumber(function(err) {
-				console.log(err);
-				this.emit('end');
+			.pipe(_if(!production, $.plumber({
+				errorHandler: $.notify.onError(function(err) {
+					console.log(err);
+					return {
+						title: 'Styles',
+						message: err.message
+					};
+				})
 			})))
 			.pipe(_if(!production, $.sourcemaps.init()))
 			.pipe($.less())
