@@ -107,13 +107,13 @@ html {
 
 @media (max-width: 500px) {
 	.menu-btn.active ~ .menu {
-		flex: 1 0 100%;
-	}
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
 
-	.menu-btn.active ~ .main {
-		flex: 1 0 0%;
-		.content {
-			display: none;
+		&::after {
+			width: 0px;
 		}
 	}
 }
