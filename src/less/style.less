@@ -1,8 +1,11 @@
 @menu-block-width: 200px;
 @page-width: 880px;
 
+@bg-color: #202020;
+
 html {
 	box-sizing: border-box;
+	font-size: 18px;
 }
 
 *, *::after, *::before {
@@ -15,8 +18,13 @@ html {
 	height: 100%;
 }
 
+body {
+	background-color: @bg-color;
+	color: grey;
+}
+
 .container {
-	width: @page-width;
+	max-width: @page-width;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -24,47 +32,102 @@ html {
 .layout {
 	height: 100%;
 
-	main, header {
-		border: 1px black dashed;
+	header,
+	footer {
+		position: fixed;
+		height: 50px;
+		left: 0px;
+		right: 0px;
 	}
-
 	header {
+		background-color: #FF8508;
+		color: @bg-color;
 		text-align: center;
-		height: 100px;
+		font-size: 2em;
 	}
 
 	main {
-		height: 100%;
-		overflow: scroll;
+		display: flex;
 	}
 
-	main div {
-		display: inline-block;
-	}
-
-	main .content {
-		float: left;
-		max-width: 660px;
-		padding-bottom: 200px;
-	}
-
-	main .menu {
-		float: left;
-		width: @menu-block-width;
+	main > div {
+		min-height: 100vh;
 	}
 
 	footer {
-		border-top: 1px solid #eee; 
+		border-top: 1px solid #FFA243; 
+		background-color: #B25A00;
+		color: #FFC182;
 		bottom: 0px;
-		left: 0px;
-		margin-bottom: 40px;
-		margin-top: 40px;
-		padding-top: 40px;
-		position: fixed;
-		right: 0px;
+		padding-top: 15px;
+		padding-left: 15px;
 	}
 
-	@media screen and (max-width: 650px) {
+	@media (max-width: 600px) {
+		main {
+			flex-direction: column;
+		}
+
+		main > div {
+			min-height: auto;
+		}
+	}
+}
+
+.menu {
+	flex: 0 0 @menu-block-width;
+	padding: 68px 0px;
+
+	div {
+		width: 100%;
+		background-color: #B25A00;
+		border-top: 2px solid @bg-color;
+	}
+
+	div a {
+		text-decoration: none;
+		padding: 5px;
+		color: #FFC182;
+		display: block;
+		width: 100%;
+	}
+
+	div:hover a {
+		background-color: #FFC182;
+		color: #B25A00;
+	}
+
+	div.active a {
+		background-color: #FFA243;
+		color: #B25A00;
+	}
+}
+
+.content {
+	flex: 1 1 @page-width - @menu-block-width;
+	padding: 50px 10px;
+	max-width: 660px;
+	border-left: 1px dotted #FFA243;
+}
+
+@media (max-width: 600px) {
+	.menu {
+		padding: 51px 0px 0px;
+		flex: 1 0 auto;
+		flex-wrap: wrap;
+		display: flex;
+
+		div {
+			width: auto;
+			border: 1px solid @bg-color;
+			flex: 1 1 auto;
+			text-align: center;
+		}
+	}
+
+	.content {
+		padding-top: 0px;
+		border-left: none;
 	}
 }
 
